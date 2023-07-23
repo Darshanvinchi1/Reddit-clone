@@ -47,8 +47,11 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
       fetchNextPage() // Load more posts when the last post comes into view
     }
   }, [entry, fetchNextPage])
+    console.log(data,'data')
 
-  const posts = data?.pages.flatMap((page) => page) ?? initialPosts
+  const datas:any = data?.pages.flatMap((page) => page.length > 0 ? page : [])
+  console.log(datas,'datas')
+  const posts = data?.pages.flatMap((page) => page.length > 0 ? page : []) ?? initialPosts
 
   return (
     <ul className='flex flex-col col-span-2 space-y-6'>
